@@ -1,6 +1,6 @@
 'use strict';
 
-const {Packer} = require('roadroller');
+const {Packer} = require('src/tasks/roadroller');
 const Task = require('./task');
 
 class Roadroller extends Task {

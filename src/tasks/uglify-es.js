@@ -1,6 +1,6 @@
 'use strict';
 
-const uglifyES = require('uglify-es');
+const uglifyES = require('src/tasks/uglify-es');
 const Task = require('./task');
 
 class UglifyES extends Task {

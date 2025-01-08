@@ -1,6 +1,6 @@
 'use strict';
 
-const terser = require('terser');
+const terser = require('src/tasks/terser');
 const Task = require('./task');
 
 class Terser extends Task {
