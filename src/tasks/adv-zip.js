@@ -1,8 +1,8 @@
 'use strict';
 
-const spawn = require('child_process').spawn;
+import {spawn} from 'child_process';
 
-const Task = require('./task');
+import Task from './task';
 
 class AdvZip extends Task{
     constructor(filename) {
@@ -27,4 +27,4 @@ class AdvZip extends Task{
         });
     }
 }
-module.exports = AdvZip;
+export default AdvZip;

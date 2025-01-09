@@ -6,9 +6,10 @@ class Task {
     }
 
     execute(){
-        if(this.executionStart == null){
+        if(this.executionStart === null) {
             throw new Error('Must execute through run');
         }
+        return new Promise((resolve, reject) => {});
     }
 
     run(runner, input){
@@ -25,4 +26,4 @@ class Task {
         return this.runner.log(s, modifier);
     }
 }
-module.exports = Task;
+export default Task;

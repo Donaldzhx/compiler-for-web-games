@@ -1,14 +1,14 @@
 'use strict';
 
-module.exports = {
+export const splitter = {
     'START_TAG': '/*nomangle*/',
-    'END_TAG': '/*/nomangle*',
+    'END_TAG': '/*/nomangle*/',
     'split': (s, start) => {
         start = start || 0;
 
         const res = [];
-        s.split(module.exports.START_TAG).forEach(function(component, i){
-            let spl = component.split(module.exports.END_TAG);
+        s.split(splitter.START_TAG).forEach((component, i) => {
+            let spl = component.split(splitter.END_TAG);
             if(i > 0){
                 res.push({
                     'content': spl[0],
@@ -30,7 +30,7 @@ module.exports = {
     'join': (components) => {
         return components.map((component) => {
             if(component.isString){
-                return module.exports.START_TAG + component.content + module.exports.END_TAG;
+                return splitter.START_TAG + component.content + splitter.END_TAG;
             }else{
                 return component.content;
             }

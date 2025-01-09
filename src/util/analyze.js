@@ -1,25 +1,28 @@
 'use strict';
 
-const config = require('./config');
+import protectedNames from '../../data/protected-names';
+import {splitter} from './split';
 
-module.exports = (source) => {
+export default (source, force, skip, minLength) => {
+    minLength = minLength || 2;
+    const protectedMap = {};
+    protectedNames.dom.concat(protectedNames.keywords).forEach(name => {
+        protectedMap[name] = true;
+    });
     const wordList = cleanString(source)
         .split(' ')
         .filter(w => {
-            return w.length >= 2 && /^[a-z]/i.test(w);
+            return w.length >= minLength && /^[$_a-z]/i.test(w);
         })
         .filter(w => {
-            return config.JS_KEYWORDS.indexOf(w) === -1;
+            return !protectedMap[w] || force.indexOf(w) >= 0;
         })
         .filter(w => {
-            return config.JS_API.indexOf(w) === -1;
+            return skip.indexOf(w) === -1;
         })
-        .filter(w => {
-            return config.JS_SKIP.indexOf(w) === -1;
-        });
 
     const counts = countList(wordList).sort((a, b) => {
-        return a.word.length * a.count - b.word.length * b.count;
+        return a.count - b.count;
     }).map(w => {
         return {
             "word": w.word,
@@ -33,8 +36,10 @@ module.exports = (source) => {
 };
 
 function cleanString(s) {
+    s = splitter.join(splitter.split(s));
+
     // Eliminate comments
-    s = s.replace(/\/\/.*\n/g, '\n');
+    s = s.replace(/\/\/.*/g, '')
 
     // Eliminate strings
     s = s.replace(/'.*'/g, ' ');
@@ -45,7 +50,7 @@ function cleanString(s) {
     s = s.replace(/#[0-9a-f]{3}/ig, ' ');
 
     // Eliminate all the non-word stuff
-    s = s.replace(/[^0-9a-f]+/ig, ' ');
+    s = s.replace(/[^0-9a-f_$]+/ig, ' ');
 
     return s;
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (num) => {
+export default (num) => {
     let alphabet = '$_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let newBase = alphabet.length;
     let digits = Math.floor(Math.log(num) / Math.log(newBase)) + 1;

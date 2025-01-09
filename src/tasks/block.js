@@ -1,8 +1,8 @@
 'use strict';
 
-const colors = require('colors/safe');
+import colors from 'colors/safe';
 
-const Task = require('./tasks');
+import Task from './task';
 
 class Block extends Task {
     constructor(label) {
@@ -10,11 +10,9 @@ class Block extends Task {
         this.label = label;
     }
 
-    execute(){
-        super.execute(input);
-
+    execute(input){
         console.log('');
-        this.log(this.label,colors.white.underline);
+        this.log(this.label,colors.white);
         return Promise.resolve(input);
     }
 }
