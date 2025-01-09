@@ -1,6 +1,6 @@
 'use strict';
 
-const Task = require('./task');
+import Task from './task';
 
 class Constants extends Task {
     constructor(constants){
@@ -9,7 +9,6 @@ class Constants extends Task {
     }
 
     execute(input){
-        super.execute(input);
 
         for(let constant in this.constants){
             const value = this.constants[constant];
@@ -21,4 +20,4 @@ class Constants extends Task {
     }
 }
 
-module.exports = Constants;
+export default Constants;

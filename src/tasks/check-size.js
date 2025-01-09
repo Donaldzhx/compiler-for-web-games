@@ -1,37 +1,35 @@
 'use strict';
 
-const fs = require('fs');
+import fs from 'fs';
 
-const Task = require('./task');
+import Task from './task';
 
 const MAX_BYTES = 1024 * 13;
 
 class CheckSize extends Task {
     constructor(path) {
         super();
-        this.path = path;
+        this.Path = path;
     }
 
     execute(input) {
-        super.execute(input);
+        return new Promise((resolve, reject) => {
+            fs.stat(this.Path, (err, stats) => {
+                resolve();
+                reject();
+                // Log file size
+                const  progress = stats.size / MAX_BYTES;
+                const meterSize = 50;
+                let meter = '[';
+                for(let i= 0; i < meterSize; i++){
+                    meter += (i / meterSize) < progress ? '#' : ' ';
+                }
+                meter += ']' + Math.round(progress * 100) + '%';
 
-        return fs.stat(this.path).then(stat => {
-            // Log file size
-            const  progress = stat.size / MAX_BYTES;
-
-            const meterSize = 50;
-            let meter = '[';
-            for(let i= 0; i < meterSize; i++){
-                meter += (i / meterSize) < progress ? '#' : ' ';
-            }
-            meter += ']' + Math.round(progress * 100) + '%';
-
-            console.log(meter);
-            console.log('ZIP file size: ' + stat.size + 'bytes (' + (MAX_BYTES - stat.size) + ' bytes remaining)');
-
-            return input;
+                console.log(meter);
+                console.log('ZIP file size: ' + stats.size + 'bytes (' + (MAX_BYTES - stats.size) + ' bytes remaining)');
+            })
         });
     }
 }
-
-module.exports = CheckSize;
+export default CheckSize;

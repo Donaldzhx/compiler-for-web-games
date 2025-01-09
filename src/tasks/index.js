@@ -1,7 +1,7 @@
 'use strict';
 
 const taskMap = {
-    'loadFiles': require('./loadFiles'),
+    'loadFiles': require('./load-files'),
     'parallel': require('./parallel'),
     'sequence': require('./sequence'),
     'log': require('./log'),
@@ -10,22 +10,22 @@ const taskMap = {
     'concat': require('./concat'),
     'mangle': require('./mangle'),
     'es6ify': require('./es6ify'),
-    'uglifyJS': require('./uglifyJS'),
-    'uglifyES': require('./uglifyES'),
+    'uglifyJS': require('./uglify-js'),
+    'uglifyES': require('./uglify-es'),
     'terser': require('./terser'),
-    'uglifyCSS': require('./uglifyCSS'),
-    'uglifyHTML': require('./uglifyHTML'),
+    'uglifyCSS': require('./uglify-css'),
+    'uglifyHTML': require('./uglify-html'),
     'zip': require('./zip'),
-    'advzip': require('./advzip'),
+    'advzip': require('./adv-zip'),
     'combine': require('./combine'),
     'constants': require('./constants'),
     'inject': require('./inject'),
-    'checkSize': require('./checkSize'),
-    'labels': require('./labels'),
+    'checkSize': require('./check-size'),
+    'labels': require('./label'),
     'watch': require('./watch'),
     'block': require('./block'),
     'ect': require('./ect'),
-    'longerNames': require('./longerNames'),
+    'longerNames': require('./longer-names'),
     'roadroller': require('./roadroller')
 };
 

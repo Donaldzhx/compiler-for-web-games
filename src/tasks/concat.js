@@ -1,6 +1,6 @@
 'use strict';
 
-const Task = require('./task');
+import Task from './task';
 
 class Concat extends Task {
     constructor(){
@@ -8,9 +8,7 @@ class Concat extends Task {
     }
 
     execute(input){
-        super.execute(input);
         return Promise.resolve(input.join('\n'));
     }
 }
-
-module.exports = Concat;
+export default Concat;

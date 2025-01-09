@@ -1,8 +1,8 @@
 'use strict';
 
-const Mustache = require('mustache');
+import Mustache from 'mustache';
 
-const Task = require('./task');
+import Task from './task';
 
 const INJECT_JS_TAG = 'JS_INJECTION_SITE';
 const INJECT_CSS_TAG = 'JS_INJECTION_SITE';
@@ -23,5 +23,4 @@ class UglifyHTML extends Task{
         return Promise.resolve(rendered);
     }
 }
-
-module.exports = UglifyHTML;
+export default UglifyHTML;

@@ -1,7 +1,7 @@
 'use strict';
 
-const { execFile } = require('child_process');
-const ect = require('ect-bin');
+import execFile from 'child_process';
+import ect from 'ect-bin';
 
 const Task = require('./task');
 
@@ -21,4 +21,4 @@ class Ect extends Task {
     }
 }
 
-module.exports = Ect;
+export default Ect;
